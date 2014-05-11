@@ -1,0 +1,18 @@
+div.form-search div { overflow: hidden; }
+div.form-search div input { width: 100%; background: #ebebe7; border: none; padding:  1em;  outline: none; }
+/*div.form-search button { float: right; width: emCalc(70); background: none; border: none; padding: 0; margin: 0; }*/
+#search {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    /*
+    *  Where the magic happens
+    *  Centering method from CSS Tricks
+    *  http://css-tricks.com/centering-percentage-widthheight-elements/
+    */
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
