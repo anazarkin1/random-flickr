@@ -46,7 +46,7 @@ if (app.get('env') === 'production') {
 app.get('/', routes.index);
 
 // JSON API
-app.get('/api/randomPick/:keyword', api.randomPick);
+app.get('/api/randomPick/:keyword', api.getRandomPickInfo);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
