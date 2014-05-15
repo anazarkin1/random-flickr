@@ -14,6 +14,7 @@ var badStatusJson = {
                     "title":"",
                     "owner":"",
                     "url":"",
+                    "url_l":"",
                     "stat": "bad"
           };
 
@@ -22,49 +23,10 @@ var getRandomNumber=function (minimum, maximum) {
     return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
 };
 
-//Get Information about an image
-//It's required to build a proper url for an image
-function getPicInfo(photo_id, callback){
-
-    //Building up the url call to Flickr api
-    var photos_getInfo_url =
-    "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo"+
-    "&api_key="+api_key+
-    "&format="+format+
-    "&photo_id="+ photo_id+
-    "&nojsoncallback=1";
-        //Fetching JSON from Flickr API with information about this image
-   https.get(photos_getInfo_url , function(r) {
-    var body="";
-
-    r.on('data', function(chunk) {
-        body += chunk;
-    });
-
-    r.on('end', function() {
-      //If no json received from Flickr API, send bad status json
-      if (body===""){
-        body=badStatusJson;
-        console.log('ERROR: trying to get info about the photo, nothing received,'+
-          'photo_id: '+ photo_id);
-      }else{
-      callback(body);
-    }
-
-  }).on('error', function(e) {
-        console.log("ERROR: trying to receive json info on "+photo_id, e);
-
-        //Sending 'bad' status, meaning that something went wrong
-        callback(badStatusJson);
-  });
-  });
-
-}
-
 //Gives away a json-ed information about a random photo
 //that has a keyword in its text
 exports.getRandomPickInfo = function(req, res) {
-    var per_page="100";
+    var per_page="";
     var text = req.params.keyword;
 
     //Building up the url call to flickr api
@@ -75,7 +37,8 @@ exports.getRandomPickInfo = function(req, res) {
     "&per_page="+ per_page+
     "&text=" + text+
     "&nojsoncallback=1"+
-    "&license=1";
+    "&license=1"+
+    "&extras=url_l, url_m, owner_name";
 
     //Fetching JSON-ed information from Flickr API with a list of photos
    https.get(photo_search_url, function(r) {
@@ -101,21 +64,12 @@ exports.getRandomPickInfo = function(req, res) {
 
        //getPicInfo runs the function that does the actual res.json
        // as a callback
-       getPicInfo(body.photos.photo[num].id, function(pickedPhotoInfo ){
-        pickedPhotoInfo = JSON.parse(pickedPhotoInfo);
-         //Checking if we got information about the image
-         if (pickedPhotoInfo.stat != "ok"){
-              console.log('Bad status from flickr json on photo_search_url');
-              res.json(badStatusJson);
-          }
         //Getting all the params that will  be sent to the view
-         var id = pickedPhotoInfo.photo.id;
-         var title = pickedPhotoInfo.photo.title._content;
-         var farm_id = pickedPhotoInfo.photo.farm;
-         var owner = pickedPhotoInfo.photo.owner.realname;
-         var server_id = pickedPhotoInfo.photo.server;
-         var secret = pickedPhotoInfo.photo.secret;
-         var original_format = pickedPhotoInfo.photo.originalformat;
+        var pickedPhotoInfo = body.photos.photo[num];
+         var id = pickedPhotoInfo.id;
+         var title = pickedPhotoInfo.title._content;
+         var farm_id = pickedPhotoInfo.farm;
+         var owner = pickedPhotoInfo.owner_name;
 
 
          //Sending JSON-ed information about a picture
@@ -123,15 +77,13 @@ exports.getRandomPickInfo = function(req, res) {
                   "id": ""+id,
                   "title": ""+title,
                   "owner":""+owner,
-                  "url":"http://farm"+farm_id+".staticflickr.com/"+server_id+
-                  "/"+id+"_"+secret+"."+original_format,
+                  "url":pickedPhotoInfo.url_m,
+                  "url_l":pickedPhotoInfo.url_l,
                   "stat": "ok"
          };
          res.json(info);
       }
 
-    );
-}
   }).on('error', function(e) {
         console.log("ERROR: trying to receive json for a keyword "+keyword, e);
 

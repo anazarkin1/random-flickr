@@ -9,9 +9,12 @@ function MainCtrl($scope, $http, $routeParams){
             success(function(data){
 
                 data.keyword = $scope.form.keyword;
-                if (data.stat==="ok")
+                if (data.stat==="ok"){
                     $scope.form =data;
                     $scope.form.hideImage=false;
+                }else{
+                    $scope.form.hideImage=true;
+                }
             });
     };
 
