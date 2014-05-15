@@ -1,4 +1,4 @@
-<div ng-controller="ImageCtrl"  >
+<div ng-controller="MainCtrl"  >
       <div id="top" class="row">
         <div class="large-8 large-offset-2">
           <label for="searchKeyword">What are you searching for?</label>
@@ -12,7 +12,7 @@
             </div>
       <div id="imageSearch" class="large-8 large-offset-2">
         <div class="large-12 columns" style="">
-          <a href="{{form.url}}" title="{{form.title}} by {{form.owner}}"><img ng-src=" {{form.url}} " alt="{{ form.keyword }} "/></a>
+          <a href="{{form.url}}" title="{{form.title}} by {{form.owner}}"><img ng-src=" {{form.url}} " ng-hide="{{ form.hideImage }}"/></a>
         </div>
       </div>
 

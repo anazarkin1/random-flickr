@@ -7,7 +7,7 @@ angular.module('randomFlickrApp', ['randomFlickrApp.filters', 'randomFlickrApp.s
     $routeProvider.
       when('/', {
         templateUrl: 'partials/index.html',
-        controller: ImageCtrl
+        controller: MainCtrl
       }).
       otherwise({
         redirectTo: '/'
