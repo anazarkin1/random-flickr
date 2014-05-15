@@ -47,6 +47,7 @@ app.get('/', routes.index);
 
 // JSON API
 app.get('/api/randomPick/:keyword', api.getRandomPickInfo);
+app.get('/partials/:name', routes.partials);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

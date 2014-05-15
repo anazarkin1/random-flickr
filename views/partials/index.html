@@ -1,0 +1,21 @@
+<div ng-controller="ImageCtrl"  >
+      <div id="top" class="row">
+        <div class="large-7 large-offset-3">
+          <label for="searchKeyword">What are you searching for?</label>
+            <div class="row form-search">
+              <div class="large-12 columns">
+              <input ng-model="form.keyword" type="text" id="searchKeyword" class="input-text" placeholder="Type something here. eg.:'smilling cat'" style=" background-attachment: scroll; cursor: auto; background-position: 100% 50%; background-repeat: no-repeat no-repeat;">
+              </div>
+              <div class="large-12 columns">
+                <button ng-click='search()' class="button large expand radius">Get a pic!</button>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div id="imageSearch" class="row">
+        <div class="large-12 columns" style="">
+          <img ng-src=" {{form.url}} " alt=" {{form.title}} by {{ form.owner }}"/>
+        </div>
+      </div>
+</div>
