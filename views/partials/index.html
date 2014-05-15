@@ -1,6 +1,6 @@
 <div ng-controller="ImageCtrl"  >
       <div id="top" class="row">
-        <div class="large-7 large-offset-3">
+        <div class="large-8 large-offset-2">
           <label for="searchKeyword">What are you searching for?</label>
             <div class="row form-search">
               <div class="large-12 columns">
@@ -10,12 +10,13 @@
                 <button ng-click='search()' class="button large expand radius">Get a pic!</button>
               </div>
             </div>
+      <div id="imageSearch" class="large-8 large-offset-2">
+        <div class="large-12 columns" style="">
+          <a href="{{form.url}}" title="{{form.title}} by {{form.owner}}"><img ng-src=" {{form.url}} " alt="{{ form.keyword }} "/></a>
         </div>
       </div>
 
-      <div id="imageSearch" class="row">
-        <div class="large-12 columns" style="">
-          <img ng-src=" {{form.url}} " alt=" {{form.title}} by {{ form.owner }}"/>
         </div>
       </div>
+
 </div>
