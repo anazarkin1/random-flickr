@@ -14,3 +14,4 @@ By default app runs on 3000 port
 Alex Nazarkin (http://github.com/bearw08)
 
 ###Github:
+    https://github.com/bearw08/random-flickr
