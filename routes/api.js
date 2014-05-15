@@ -67,9 +67,10 @@ exports.getRandomPickInfo = function(req, res) {
         //Getting all the params that will  be sent to the view
         var pickedPhotoInfo = body.photos.photo[num];
          var id = pickedPhotoInfo.id;
-         var title = pickedPhotoInfo.title._content;
-         var farm_id = pickedPhotoInfo.farm;
-         var owner = pickedPhotoInfo.owner_name;
+         var title = pickedPhotoInfo.title;
+         var url = pickedPhotoInfo.url_m;
+         var url_l = pickedPhotoInfo.url_l;
+         var owner = pickedPhotoInfo.ownername;
 
 
          //Sending JSON-ed information about a picture
@@ -77,8 +78,8 @@ exports.getRandomPickInfo = function(req, res) {
                   "id": ""+id,
                   "title": ""+title,
                   "owner":""+owner,
-                  "url":pickedPhotoInfo.url_m,
-                  "url_l":pickedPhotoInfo.url_l,
+                  "url":url,
+                  "url_l":url_l,
                   "stat": "ok"
          };
          res.json(info);
