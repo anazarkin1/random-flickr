@@ -26,7 +26,7 @@ var getRandomNumber=function (minimum, maximum) {
 //Gives away a json-ed information about a random photo
 //that has a keyword in its text
 exports.getRandomPickInfo = function(req, res) {
-    var per_page="";
+    var per_page="500";
     var text = req.params.keyword;
 
     //Building up the url call to flickr api
@@ -59,8 +59,8 @@ exports.getRandomPickInfo = function(req, res) {
           res.json(badStatusJson);
        }else{
 
-       //Getting a random number
-       var num = getRandomNumber(1, per_page);
+        //Getting random image on this page
+        var num = getRandomNumber(1, body.photos.photo.length-1);
 
        //getPicInfo runs the function that does the actual res.json
        // as a callback
