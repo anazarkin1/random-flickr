@@ -8,7 +8,7 @@
     "ejs": "*"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "0.10.26"
   },
   "description": "An app that shows a random image from Flickr based on keyword you type in",
   "devDependencies": {},
