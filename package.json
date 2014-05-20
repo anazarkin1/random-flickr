@@ -1,16 +1,38 @@
 {
-  "name": "application-name",
+  "name": "random-flickr",
   "version": "0.0.1",
-  "private": true,
-  "main":"app.js",
+  "private": false,
+  "main": "app.js",
   "dependencies": {
     "express": "~3.2.6",
-    "ejs" : "*"
+    "ejs": "*"
   },
-
-
   "engines": {
     "node": "0.10.x"
-  }
-
+  },
+  "description": "An app that shows a random image from Flickr based on keyword you type in",
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bearw08/random-flickr.git"
+  },
+  "keywords": [
+    "random",
+    "flickr",
+    "random",
+    "image",
+    "search",
+    "image",
+    "search",
+    "flickr"
+  ],
+  "author": "Alex Nazarkin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bearw08/random-flickr/issues"
+  },
+  "homepage": "https://github.com/bearw08/random-flickr"
 }
